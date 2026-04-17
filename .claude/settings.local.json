@@ -12,7 +12,10 @@
       "Bash(node -e \"const a=require\\('./angular.json'\\); const b=a.projects.avgangstider.architect.build; console.log\\(JSON.stringify\\(b.options, null, 2\\)\\)\")",
       "Bash(node -e ' *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Update GitHub Actions to Node.js 24 compatible versions *)",
+      "Bash(git commit -m 'Fix npm peer dependency: update service-worker to 21.2.9 *)"
     ]
   }
 }
