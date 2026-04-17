@@ -26,7 +26,7 @@ export class StopsService {
   readonly stopGroups = signal<StopGroup[]>([]);
   readonly currentGroupIndex = signal(0);
   readonly currentPlatformIndex = signal(0);
-  readonly loadingStops = signal(false);
+  readonly loadingStops = signal(true);
   readonly loadingDepartures = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentTime = signal(new Date());

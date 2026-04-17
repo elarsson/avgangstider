@@ -60,6 +60,38 @@
         [stopName]="stops.currentGroup()!.name"
         [platformLabel]="stops.currentPlatform()?.label ?? ''"
         [currentTime]="stops.currentTime()" />
+    } @else {
+      <div class="splash" role="alert">
+        <p class="error-msg">Inga hållplatser hittades.</p>
+        <form class="search-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
+          <label for="stop-search2" class="search-label">Sök hållplats manuellt</label>
+          <div class="search-row">
+            <input
+              id="stop-search2"
+              type="search"
+              class="search-input"
+              placeholder="T.ex. Rådhusparken"
+              autocomplete="off"
+              [(ngModel)]="searchQuery"
+              name="stopSearch2" />
+            <button type="submit" class="search-btn" [disabled]="stops.searching()">Sök</button>
+          </div>
+        </form>
+        @if (stops.searching()) {
+          <p class="search-hint">Söker…</p>
+        }
+        @if (stops.searchResults().length > 0) {
+          <ul class="search-results" role="listbox" aria-label="Sökresultat">
+            @for (result of stops.searchResults(); track result.extId) {
+              <li role="option">
+                <button type="button" class="search-result-btn" (click)="stops.selectStop(result)">
+                  {{ result.name }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
     }
   </main>
 
