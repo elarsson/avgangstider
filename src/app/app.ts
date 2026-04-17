@@ -3,8 +3,10 @@ import {
   Component,
   OnInit,
   inject,
+  isDevMode,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SwUpdate } from '@angular/service-worker';
 import { DepartureBoardComponent } from './components/departure-board/departure-board.component';
 import { StopsService } from './services/stops.service';
 
@@ -23,6 +25,7 @@ import { StopsService } from './services/stops.service';
 export class App implements OnInit {
   protected stops = inject(StopsService);
   protected searchQuery = '';
+  private swUpdate = inject(SwUpdate);
 
   private touchStartX = 0;
   private touchStartY = 0;
@@ -30,6 +33,14 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.stops.init();
+    if (!isDevMode() && this.swUpdate.isEnabled) {
+      this.swUpdate.versionUpdates.subscribe(evt => {
+        if (evt.type === 'VERSION_READY') {
+          this.swUpdate.activateUpdate().then(() => location.reload());
+        }
+      });
+      this.swUpdate.checkForUpdate();
+    }
   }
 
   onTouchStart(event: TouchEvent): void {
