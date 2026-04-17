@@ -24,6 +24,7 @@
     } @else if (stops.error()) {
       <div class="splash" role="alert">
         <p class="error-msg">{{ stops.error() }}</p>
+        <button type="button" class="retry-btn" (click)="stops.retryGeolocation()">Försök med plats igen</button>
         <form class="search-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
           <label for="stop-search" class="search-label">Sök hållplats manuellt</label>
           <div class="search-row">

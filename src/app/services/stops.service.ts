@@ -103,6 +103,20 @@ export class StopsService {
     this.currentPlatformIndex.set(next);
   }
 
+  retryGeolocation(): void {
+    this.error.set(null);
+    this.searchResults.set([]);
+    this.loadingStops.set(true);
+    this.geo.getPosition().subscribe({
+      next: pos =>
+        this.loadNearbyStops(pos.coords.latitude, pos.coords.longitude),
+      error: (err: unknown) => {
+        this.loadingStops.set(false);
+        this.error.set(geolocationErrorMessage(err));
+      },
+    });
+  }
+
   search(query: string): void {
     if (!query.trim()) {
       this.searchResults.set([]);
