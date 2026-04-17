@@ -1,0 +1,141 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background: #1a1a2e;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.stop-label {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: 0.75rem;
+}
+
+.clock {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.col-headers {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr 3.5rem 3.5rem;
+  padding: 0.3rem 0.75rem;
+  background: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.col-time {
+  text-align: center;
+}
+
+.departures {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.departure-row {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr 3.5rem 3.5rem;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #eee;
+  min-height: 3.4rem;
+}
+
+.departure-row:last-child {
+  border-bottom: none;
+}
+
+.cell-line {
+  display: flex;
+  align-items: center;
+}
+
+.cell-dest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow: hidden;
+  padding-right: 0.25rem;
+}
+
+.destination {
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #111;
+}
+
+.via {
+  font-size: 0.72rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cell-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.time-val {
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #111;
+}
+
+.time-unit {
+  font-size: 0.62rem;
+  color: #666;
+  margin-top: 0.1rem;
+  letter-spacing: 0.03em;
+}
+
+.time--now .time-val {
+  color: #c00;
+  font-size: 0.85rem;
+}
+
+.time--empty {
+  color: #ccc;
+  font-weight: 400;
+}
+
+.status-msg {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}

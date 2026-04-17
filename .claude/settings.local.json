@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/trafiklab/openApi-docs/refs/heads/master/resrobot-v21.yaml\")",
+      "Bash(awk '/DepartureBoardEntry:/,/^    [A-Z]/')",
+      "Bash(awk '/^    DepartureBoardEntry:/,/^    [A-Z][a-zA-Z]+:/')",
+      "Bash(npx ng *)"
+    ]
+  }
+}

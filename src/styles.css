@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+  color: #111;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Line badge colors — customize per line number below.
+   The selector targets the span inside app-line-badge.
+   Add entries for your local lines.
+   Format: .line-badge[data-line="X"] { background: #color; color: #textColor; }
+───────────────────────────────────────────────────────────── */
+
+/* JLT Jönköping — common lines (adjust colors to match your network) */
+app-line-badge .badge[data-line="1"]   { background: #e31e24; color: #fff; }
+app-line-badge .badge[data-line="2"]   { background: #f7a600; color: #000; }
+app-line-badge .badge[data-line="3"]   { background: #009a44; color: #fff; }
+app-line-badge .badge[data-line="4"]   { background: #0066b3; color: #fff; }
+app-line-badge .badge[data-line="5"]   { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-line="6"]   { background: #e05206; color: #fff; }
+app-line-badge .badge[data-line="7"]   { background: #a0522d; color: #fff; }
+app-line-badge .badge[data-line="8"]   { background: #008b8b; color: #fff; }
+app-line-badge .badge[data-line="9"]   { background: #696969; color: #fff; }
+app-line-badge .badge[data-line="10"]  { background: #c71585; color: #fff; }
+app-line-badge .badge[data-line="11"]  { background: #e31e24; color: #fff; }
+app-line-badge .badge[data-line="12"]  { background: #f7a600; color: #000; }
+app-line-badge .badge[data-line="13"]  { background: #009a44; color: #fff; }
+app-line-badge .badge[data-line="14"]  { background: #0066b3; color: #fff; }
+app-line-badge .badge[data-line="17"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-line="20"]  { background: #e05206; color: #fff; }
+app-line-badge .badge[data-line="24"]  { background: #0066b3; color: #fff; }
+app-line-badge .badge[data-line="27"]  { background: #009a44; color: #fff; }
+app-line-badge .badge[data-line="28"]  { background: #e31e24; color: #fff; }
+app-line-badge .badge[data-line="37"]  { background: #f7a600; color: #000; }
+app-line-badge .badge[data-line="135"] { background: #7b3f9e; color: #fff; }

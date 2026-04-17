@@ -1,0 +1,49 @@
+<header class="board-header">
+  <span class="stop-label">{{ headerLabel() }}</span>
+  <span class="clock" aria-live="polite" aria-atomic="true">{{ formattedClock() }}</span>
+</header>
+
+<div class="col-headers" aria-hidden="true">
+  <span class="col-line">Linje</span>
+  <span class="col-dest">Destination</span>
+  <span class="col-time">Avgår</span>
+  <span class="col-time">Nästa</span>
+</div>
+
+<div class="departures" role="list" aria-label="Avgångstider">
+  @if (loading() && rows().length === 0) {
+    <div class="status-msg" aria-live="polite">Laddar avgångar…</div>
+  } @else if (rows().length === 0) {
+    <div class="status-msg">Inga avgångar hittades.</div>
+  } @else {
+    @for (row of rows(); track row.line + row.destination) {
+      <div class="departure-row" role="listitem">
+        <div class="cell-line">
+          <app-line-badge [line]="row.line" />
+        </div>
+        <div class="cell-dest">
+          <span class="destination">{{ row.destination }}</span>
+          @if (row.via) {
+            <span class="via">{{ row.via }}</span>
+          }
+        </div>
+        <div class="cell-time" [class.time--now]="row.nextMinutes <= 0">
+          <span class="time-val">{{ formatTime(row.nextMinutes, row.nextTime) }}</span>
+          @if (showUnit(row.nextMinutes)) {
+            <span class="time-unit">min</span>
+          }
+        </div>
+        <div class="cell-time" [class.time--now]="row.afterMinutes !== null && row.afterMinutes <= 0">
+          @if (row.afterMinutes !== null && row.afterTime !== null) {
+            <span class="time-val">{{ formatTime(row.afterMinutes, row.afterTime) }}</span>
+            @if (showUnit(row.afterMinutes)) {
+              <span class="time-unit">min</span>
+            }
+          } @else {
+            <span class="time-val time--empty">—</span>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>
