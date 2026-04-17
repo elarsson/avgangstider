@@ -6,7 +6,11 @@
       "Bash(curl -s \"https://raw.githubusercontent.com/trafiklab/openApi-docs/refs/heads/master/resrobot-v21.yaml\")",
       "Bash(awk '/DepartureBoardEntry:/,/^    [A-Z]/')",
       "Bash(awk '/^    DepartureBoardEntry:/,/^    [A-Z][a-zA-Z]+:/')",
-      "Bash(npx ng *)"
+      "Bash(npx ng *)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/trafiklab/trafiklab.se/refs/heads/development/static/openapi/trafiklab-apis.yml\")",
+      "Bash(npm install *)",
+      "Bash(node -e \"const a=require\\('./angular.json'\\); const b=a.projects.avgangstider.architect.build; console.log\\(JSON.stringify\\(b.options, null, 2\\)\\)\")",
+      "Bash(node -e ' *)"
     ]
   }
 }

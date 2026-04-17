@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { DepartureRow } from '../../models/stop.model';
+import type { DepartureRow } from '../../models/stop.model';
 import { LineBadgeComponent } from '../line-badge/line-badge.component';
 
 @Component({
@@ -13,7 +13,7 @@ export class DepartureBoardComponent {
   rows = input.required<DepartureRow[]>();
   loading = input(false);
   stopName = input('');
-  positionLabel = input('');
+  platformLabel = input('');
   currentTime = input(new Date());
 
   protected formatTime(minutes: number, time: string): string {
@@ -34,7 +34,7 @@ export class DepartureBoardComponent {
   }
 
   protected headerLabel(): string {
-    const pos = this.positionLabel();
-    return pos ? `${this.stopName()}, ${pos}` : this.stopName();
+    const plat = this.platformLabel();
+    return plat ? `${this.stopName()}, ${plat}` : this.stopName();
   }
 }

@@ -58,21 +58,21 @@
         [rows]="stops.departureRows()"
         [loading]="stops.loadingDepartures()"
         [stopName]="stops.currentGroup()!.name"
-        [positionLabel]="stops.currentLocation()?.positionLabel ?? ''"
+        [platformLabel]="stops.currentPlatform()?.label ?? ''"
         [currentTime]="stops.currentTime()" />
     }
   </main>
 
-  <!-- Horizontal location navigation dots (bottom) -->
-  @if (stops.currentGroup() && stops.currentGroup()!.locations.length > 1) {
+  <!-- Horizontal platform navigation dots (bottom) -->
+  @if (stops.currentPlatforms().length > 1) {
     <nav class="location-nav" aria-label="Lägen">
-      @for (loc of stops.currentGroup()!.locations; track loc.extId; let i = $index) {
+      @for (p of stops.currentPlatforms(); track p.designation; let i = $index) {
         <button
           class="nav-dot"
-          [class.nav-dot--active]="i === stops.currentLocationIndex()"
-          (click)="stops.navigateLocation(i - stops.currentLocationIndex())"
-          [attr.aria-label]="loc.positionLabel || loc.name"
-          [attr.aria-current]="i === stops.currentLocationIndex() ? 'true' : null">
+          [class.nav-dot--active]="i === stops.currentPlatformIndex()"
+          (click)="stops.navigateLocation(i - stops.currentPlatformIndex())"
+          [attr.aria-label]="p.label || p.designation || ('Läge ' + (i + 1))"
+          [attr.aria-current]="i === stops.currentPlatformIndex() ? 'true' : null">
         </button>
       }
     </nav>

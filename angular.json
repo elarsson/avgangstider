@@ -22,11 +22,16 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "manifest.webmanifest",
+                "input": "src"
               }
             ],
             "styles": [
               "src/styles.css"
-            ]
+            ],
+            "serviceWorker": "ngsw-config.json"
           },
           "configurations": {
             "production": {
