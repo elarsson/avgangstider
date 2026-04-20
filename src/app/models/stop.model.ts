@@ -17,11 +17,13 @@ export interface Departure {
   platform: string;
   canceled: boolean;
   operator: string;
+  mode: string;
 }
 
 export interface DepartureRow {
   line: string;
   operator: string;
+  mode: string;
   destination: string;
   via: string | null;
   nextMinutes: number;

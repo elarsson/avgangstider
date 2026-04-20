@@ -11,7 +11,7 @@ interface TimetableEntry {
   realtime?: string;
   is_realtime?: boolean;
   canceled?: boolean;
-  route?: { designation?: string; direction?: string; agency?: { name?: string; id?: string } };
+  route?: { designation?: string; direction?: string; transport_mode?: string; agency?: { name?: string; id?: string } };
   trip?: { trip_id?: string; operator?: { name?: string; id?: string } };
   realtime_platform?: { designation?: string };
   scheduled_platform?: { designation?: string };
@@ -44,6 +44,7 @@ function mapEntry(d: TimetableEntry): Departure {
   const scheduled = new Date(d.scheduled);
   const realtime = d.realtime ? new Date(d.realtime) : null;
   const effectiveTime = d.is_realtime && realtime ? realtime : scheduled;
+  const mode = d.route?.transport_mode ?? '';
   const operator =
     d.operator?.name ??
     d.agency?.name ??
@@ -58,5 +59,6 @@ function mapEntry(d: TimetableEntry): Departure {
     platform,
     canceled: d.canceled ?? false,
     operator,
+    mode,
   };
 }

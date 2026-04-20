@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import type { DepartureRow } from '../../models/stop.model';
 import { LineBadgeComponent } from '../line-badge/line-badge.component';
+import { TransportModeIconComponent } from '../transport-mode-icon/transport-mode-icon.component';
 
 @Component({
   selector: 'app-departure-board',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LineBadgeComponent],
+  imports: [LineBadgeComponent, TransportModeIconComponent],
   templateUrl: './departure-board.component.html',
   styleUrl: './departure-board.component.css',
 })

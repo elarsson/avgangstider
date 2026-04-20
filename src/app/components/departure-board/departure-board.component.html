@@ -19,6 +19,7 @@
     @for (row of rows(); track row.line + row.destination) {
       <div class="departure-row" role="listitem">
         <div class="cell-line">
+          <app-transport-mode-icon [mode]="row.mode" />
           <app-line-badge [line]="row.line" [operator]="row.operator" />
         </div>
         <div class="cell-dest">
