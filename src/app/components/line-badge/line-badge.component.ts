@@ -7,7 +7,7 @@ import {
 @Component({
   selector: 'app-line-badge',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<span class="badge" [attr.data-line]="line()" [attr.data-operator]="operator()" [title]="operator()">{{ line() }}</span>`,
+  template: `<span class="badge" [attr.data-line]="line()" [attr.data-operator]="operator()">{{ line() }}</span>`,
   styles: `
     .badge {
       display: inline-flex;

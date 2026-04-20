@@ -20,97 +20,97 @@ html, body {
 ───────────────────────────────────────────────────────────── */
 
 /* JLT Jönköping — common lines (adjust colors to match your network) */
-app-line-badge .badge[data-line="1"]   { background: #e31e24; color: #fff; }
-app-line-badge .badge[data-line="2"]   { background: #f7a600; color: #000; }
-app-line-badge .badge[data-line="3"]   { background: #009a44; color: #fff; }
-app-line-badge .badge[data-line="4"]   { background: #0066b3; color: #fff; }
-app-line-badge .badge[data-line="5"]   { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="6"]   { background: #e05206; color: #fff; }
-app-line-badge .badge[data-line="7"]   { background: #a0522d; color: #fff; }
-app-line-badge .badge[data-line="8"]   { background: #008b8b; color: #fff; }
-app-line-badge .badge[data-line="9"]   { background: #696969; color: #fff; }
-app-line-badge .badge[data-line="10"]  { background: #c71585; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="1"]   { background: #e31e24; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="2"]   { background: #f7a600; color: #000; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="3"]   { background: #009a44; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="4"]   { background: #0066b3; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="5"]   { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="6"]   { background: #e05206; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="7"]   { background: #a0522d; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="8"]   { background: #008b8b; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="9"]   { background: #696969; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="10"]  { background: #c71585; color: #fff; }
 /* Tätortstrafik — purple */
-app-line-badge .badge[data-line="11"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="15"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="16"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="17"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="24"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="27"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="28"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="31"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="35"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="37"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="50"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="61"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="62"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="63"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="64"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="67"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="71"]  { background: #7b3f9e; color: #fff; }
-app-line-badge .badge[data-line="72"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="11"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="15"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="16"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="17"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="24"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="27"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="28"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="31"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="35"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="37"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="50"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="61"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="62"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="63"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="64"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="67"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="71"]  { background: #7b3f9e; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="72"]  { background: #7b3f9e; color: #fff; }
 /* Länsbuss — orange */
-app-line-badge .badge[data-line="112"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="113"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="114"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="115"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="116"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="119"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="120"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="121"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="122"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="124"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="130"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="131"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="132"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="135"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="136"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="141"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="142"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="150"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="155"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="160"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="202"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="235"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="238"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="241"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="242"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="245"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="246"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="247"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="248"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="249"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="250"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="254"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="270"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="273"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="275"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="311"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="312"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="313"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="314"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="320"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="321"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="322"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="325"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="330"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="335"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="340"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="341"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="342"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="343"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="344"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="345"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="352"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="353"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="354"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="363"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="406"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="432"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="500"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="530"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="536"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="630"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="631"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="670"] { background: #f07848; color: #fff; }
-app-line-badge .badge[data-line="873"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="112"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="113"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="114"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="115"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="116"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="119"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="120"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="121"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="122"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="124"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="130"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="131"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="132"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="135"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="136"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="141"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="142"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="150"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="155"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="160"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="202"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="235"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="238"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="241"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="242"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="245"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="246"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="247"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="248"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="249"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="250"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="254"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="270"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="273"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="275"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="311"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="312"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="313"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="314"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="320"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="321"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="322"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="325"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="330"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="335"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="340"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="341"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="342"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="343"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="344"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="345"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="352"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="353"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="354"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="363"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="406"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="432"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="500"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="530"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="536"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="630"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="631"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="670"] { background: #f07848; color: #fff; }
+app-line-badge .badge[data-operator="Jönköpings Länstrafik"][data-line="873"] { background: #f07848; color: #fff; }
