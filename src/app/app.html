@@ -64,6 +64,9 @@
     } @else {
       <div class="splash" role="alert">
         <p class="error-msg">Inga hållplatser hittades nära din position.</p>
+        @if (stops.debugCoords()) {
+          <p class="search-hint">Koordinater: {{ stops.debugCoords() }}</p>
+        }
         <button type="button" class="retry-btn" (click)="stops.retryGeolocation()">Försök med plats igen</button>
         <form class="search-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
           <label for="stop-search2" class="search-label">Sök hållplats manuellt</label>

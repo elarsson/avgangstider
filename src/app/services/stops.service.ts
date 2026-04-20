@@ -27,6 +27,7 @@ export class StopsService {
   readonly currentGroupIndex = signal(0);
   readonly currentPlatformIndex = signal(0);
   readonly loadingStops = signal(true);
+  readonly debugCoords = signal<string | null>(null);
   readonly loadingDepartures = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentTime = signal(new Date());
@@ -68,8 +69,10 @@ export class StopsService {
   init(): void {
     this.loadingStops.set(true);
     this.geo.getPosition().subscribe({
-      next: pos =>
-        this.loadNearbyStops(pos.coords.latitude, pos.coords.longitude),
+      next: pos => {
+        this.debugCoords.set(`${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} ±${Math.round(pos.coords.accuracy)}m`);
+        this.loadNearbyStops(pos.coords.latitude, pos.coords.longitude);
+      },
       error: (err: unknown) => {
         this.loadingStops.set(false);
         this.error.set(geolocationErrorMessage(err));
@@ -108,8 +111,10 @@ export class StopsService {
     this.searchResults.set([]);
     this.loadingStops.set(true);
     this.geo.getPosition().subscribe({
-      next: pos =>
-        this.loadNearbyStops(pos.coords.latitude, pos.coords.longitude),
+      next: pos => {
+        this.debugCoords.set(`${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} ±${Math.round(pos.coords.accuracy)}m`);
+        this.loadNearbyStops(pos.coords.latitude, pos.coords.longitude);
+      },
       error: (err: unknown) => {
         this.loadingStops.set(false);
         this.error.set(geolocationErrorMessage(err));
