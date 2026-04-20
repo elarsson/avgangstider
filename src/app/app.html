@@ -13,18 +13,17 @@
   @if (showSearch()) {
     <div class="search-overlay" role="dialog" aria-label="Sök hållplats">
       <div class="search-overlay-header">
-        <form class="search-overlay-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
-          <input
-            id="overlay-search"
-            type="search"
-            class="search-overlay-input"
-            placeholder="Sök hållplats…"
-            autocomplete="off"
-            [(ngModel)]="searchQuery"
-            name="overlaySearch"
-            autofocus />
-          <button type="submit" class="search-overlay-btn" [disabled]="stops.searching()">Sök</button>
-        </form>
+        <input
+          id="overlay-search"
+          type="search"
+          class="search-overlay-input"
+          placeholder="Sök hållplats…"
+          autocomplete="off"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchQueryChange($event)"
+          name="overlaySearch"
+          autofocus
+          aria-label="Sök hållplats" />
         <button type="button" class="search-overlay-close" (click)="closeSearch()" aria-label="Stäng">✕</button>
       </div>
       @if (stops.searching()) {
@@ -85,7 +84,7 @@
       <div class="splash" role="alert">
         <p class="error-msg">{{ stops.error() }}</p>
         <button type="button" class="retry-btn" (click)="stops.retryGeolocation()">Försök med plats igen</button>
-        <form class="search-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
+        <form class="search-form" aria-label="Sök hållplats">
           <label for="stop-search" class="search-label">Sök hållplats manuellt</label>
           <div class="search-row">
             <input
@@ -95,8 +94,8 @@
               placeholder="T.ex. Rådhusparken"
               autocomplete="off"
               [(ngModel)]="searchQuery"
+              (ngModelChange)="onSearchQueryChange($event)"
               name="stopSearch" />
-            <button type="submit" class="search-btn" [disabled]="stops.searching()">Sök</button>
           </div>
         </form>
         @if (stops.searching()) {
@@ -130,7 +129,7 @@
           <p class="search-hint">Koordinater: {{ stops.debugCoords() }}</p>
         }
         <button type="button" class="retry-btn" (click)="stops.retryGeolocation()">Försök med plats igen</button>
-        <form class="search-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
+        <form class="search-form" aria-label="Sök hållplats">
           <label for="stop-search2" class="search-label">Sök hållplats manuellt</label>
           <div class="search-row">
             <input
@@ -140,8 +139,8 @@
               placeholder="T.ex. Rådhusparken"
               autocomplete="off"
               [(ngModel)]="searchQuery"
+              (ngModelChange)="onSearchQueryChange($event)"
               name="stopSearch2" />
-            <button type="submit" class="search-btn" [disabled]="stops.searching()">Sök</button>
           </div>
         </form>
         @if (stops.searching()) {

@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   OnInit,
   inject,
   isDevMode,
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
 import { DepartureBoardComponent } from './components/departure-board/departure-board.component';
 import { StopsService } from './services/stops.service';
@@ -26,7 +28,7 @@ import { VasttrafikColorsService } from './services/vasttrafik-colors.service';
     '(touchcancel)': 'onTouchCancel()',
   },
 })
-export class App implements OnInit {
+export class App implements OnInit, OnDestroy {
   protected stops = inject(StopsService);
   protected searchQuery = '';
   protected showSearch = signal(false);
@@ -37,9 +39,24 @@ export class App implements OnInit {
   private touchStartY = 0;
   private touchActive = false;
 
+  private searchInput$ = new Subject<string>();
+
   ngOnInit(): void {
     this.stops.init();
     this.vasttrafikColors.load();
+
+    this.searchInput$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+    ).subscribe(q => {
+      if (q.trim().length >= 2) {
+        this.stops.search(q);
+      } else {
+        this.stops.searchResults.set([]);
+        this.stops.searching.set(false);
+      }
+    });
+
     if (!isDevMode() && this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.subscribe(evt => {
         if (evt.type === 'VERSION_READY') {
@@ -48,6 +65,10 @@ export class App implements OnInit {
       });
       this.swUpdate.checkForUpdate();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.searchInput$.complete();
   }
 
   onTouchStart(event: TouchEvent): void {
@@ -86,11 +107,11 @@ export class App implements OnInit {
   protected closeSearch(): void {
     this.showSearch.set(false);
     this.stops.searchResults.set([]);
+    this.searchQuery = '';
   }
 
-  protected submitSearch(): void {
-    const q = this.searchQuery.trim();
-    if (q) this.stops.search(q);
+  protected onSearchQueryChange(query: string): void {
+    this.searchInput$.next(query);
   }
 
   protected selectAndClose(stop: RawStop): void {
