@@ -1,13 +1,21 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
   input,
 } from '@angular/core';
+import { VasttrafikColorsService } from '../../services/vasttrafik-colors.service';
 
 @Component({
   selector: 'app-line-badge',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<span class="badge" [attr.data-line]="line()" [attr.data-operator]="operator()">{{ line() }}</span>`,
+  template: `<span class="badge"
+    [attr.data-line]="line()"
+    [attr.data-operator]="operator()"
+    [style.background]="dynamicBg()"
+    [style.color]="dynamicFg()"
+    [style.border]="dynamicBorder()">{{ line() }}</span>`,
   styles: `
     .badge {
       display: inline-flex;
@@ -28,4 +36,18 @@ import {
 export class LineBadgeComponent {
   line = input.required<string>();
   operator = input('');
+
+  private vasttrafikColors = inject(VasttrafikColorsService);
+
+  private colors = computed(() => {
+    if (this.operator() !== 'Västtrafik') return null;
+    return this.vasttrafikColors.getColors(this.line());
+  });
+
+  protected dynamicBg = computed(() => this.colors()?.backgroundColor ?? null);
+  protected dynamicFg = computed(() => this.colors()?.foregroundColor ?? null);
+  protected dynamicBorder = computed(() => {
+    const bc = this.colors()?.borderColor;
+    return bc ? `2px solid ${bc}` : null;
+  });
 }

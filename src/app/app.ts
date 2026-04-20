@@ -11,6 +11,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { DepartureBoardComponent } from './components/departure-board/departure-board.component';
 import { StopsService } from './services/stops.service';
 import { RawStop } from './services/resrobot.service';
+import { VasttrafikColorsService } from './services/vasttrafik-colors.service';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ export class App implements OnInit {
   protected searchQuery = '';
   protected showSearch = signal(false);
   private swUpdate = inject(SwUpdate);
+  private vasttrafikColors = inject(VasttrafikColorsService);
 
   private touchStartX = 0;
   private touchStartY = 0;
@@ -36,6 +38,7 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.stops.init();
+    this.vasttrafikColors.load();
     if (!isDevMode() && this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.subscribe(evt => {
         if (evt.type === 'VERSION_READY') {
