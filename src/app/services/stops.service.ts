@@ -155,6 +155,7 @@ export class StopsService {
   private loadNearbyStops(lat: number, lon: number): void {
     this.resrobot.getNearbyStops(lat, lon).subscribe({
       next: stops => {
+        this.debugCoords.update(c => c ? `${c} — ${stops.length} hållplatser` : c);
         const groups = groupStops(stops).slice(0, 5);
         this.stopGroups.set(groups);
         this.currentGroupIndex.set(0);

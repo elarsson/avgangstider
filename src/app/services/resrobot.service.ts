@@ -35,7 +35,7 @@ export class ResrobotService {
       .set('originCoordLat', lat)
       .set('originCoordLong', lon)
       .set('maxNo', 50)
-      .set('r', 1000)
+      .set('r', 5000)
       .set('format', 'json')
       .set('accessId', ACCESS_ID);
 
