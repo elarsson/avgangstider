@@ -41,9 +41,12 @@ function mapEntry(d: TimetableEntry): Departure {
     d.realtime_platform?.designation ??
     d.scheduled_platform?.designation ??
     '';
-  const scheduled = new Date(d.scheduled);
+  const scheduledTime = new Date(d.scheduled);
   const realtime = d.realtime ? new Date(d.realtime) : null;
-  const effectiveTime = d.is_realtime && realtime ? realtime : scheduled;
+  const effectiveTime = d.is_realtime && realtime ? realtime : scheduledTime;
+  const delayMinutes = d.is_realtime && realtime
+    ? Math.round((realtime.getTime() - scheduledTime.getTime()) / 60000)
+    : null;
   const mode = d.route?.transport_mode ?? '';
   const operator =
     d.operator?.name ??
@@ -55,7 +58,9 @@ function mapEntry(d: TimetableEntry): Departure {
     tripId: d.trip?.trip_id ?? `${d.scheduled}|${d.route?.designation ?? ''}`,
     line: d.route?.designation ?? '',
     direction: d.route?.direction ?? '',
+    scheduledTime,
     effectiveTime,
+    delayMinutes,
     platform,
     canceled: d.canceled ?? false,
     operator,

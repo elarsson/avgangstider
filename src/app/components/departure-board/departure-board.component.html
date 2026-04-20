@@ -1,5 +1,16 @@
 <header class="board-header">
   <span class="stop-label">{{ headerLabel() }}</span>
+  <button
+    type="button"
+    class="fav-btn"
+    [class.fav-btn--active]="isFavorite()"
+    (click)="favoriteToggle.emit()"
+    [attr.aria-label]="isFavorite() ? 'Ta bort från favoriter' : 'Lägg till i favoriter'"
+    [attr.aria-pressed]="isFavorite()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+  </button>
   <span class="clock" aria-live="polite" aria-atomic="true">{{ formattedClock() }}</span>
 </header>
 
@@ -33,12 +44,18 @@
           @if (showUnit(row.nextMinutes)) {
             <span class="time-unit">min</span>
           }
+          @if (formatDelay(row.nextDelay); as d) {
+            <span class="delay-badge" [class.delay--late]="row.nextDelay! > 0" [class.delay--early]="row.nextDelay! < 0">{{ d }}</span>
+          }
         </div>
         <div class="cell-time" [class.time--now]="row.afterMinutes !== null && row.afterMinutes <= 0">
           @if (row.afterMinutes !== null && row.afterTime !== null) {
             <span class="time-val">{{ formatTime(row.afterMinutes, row.afterTime) }}</span>
             @if (showUnit(row.afterMinutes)) {
               <span class="time-unit">min</span>
+            }
+            @if (formatDelay(row.afterDelay); as d) {
+              <span class="delay-badge" [class.delay--late]="row.afterDelay! > 0" [class.delay--early]="row.afterDelay! < 0">{{ d }}</span>
             }
           } @else {
             <span class="time-val time--empty">—</span>

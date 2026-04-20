@@ -41,6 +41,21 @@
           }
         </ul>
       }
+      @if (!stops.searching() && stops.searchResults().length === 0 && stops.favorites().length > 0) {
+        <p class="search-section-label">Favoriter</p>
+        <ul class="search-results overlay-results" role="listbox" aria-label="Favoriter">
+          @for (fav of stops.favorites(); track fav.name) {
+            <li role="option">
+              <button type="button" class="search-result-btn fav-result-btn" (click)="selectFavoriteAndClose(fav)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffd700" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                {{ fav.name }}
+              </button>
+            </li>
+          }
+        </ul>
+      }
     </div>
   }
 
@@ -105,7 +120,9 @@
         [loading]="stops.loadingDepartures()"
         [stopName]="stops.currentGroup()!.name"
         [platformLabel]="stops.currentPlatform()?.label ?? ''"
-        [currentTime]="stops.currentTime()" />
+        [currentTime]="stops.currentTime()"
+        [isFavorite]="stops.isFavorite(stops.currentGroup()!)"
+        (favoriteToggle)="stops.toggleFavorite(stops.currentGroup()!)" />
     } @else {
       <div class="splash" role="alert">
         <p class="error-msg">Inga hållplatser hittades nära din position.</p>

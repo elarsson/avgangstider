@@ -11,6 +11,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { DepartureBoardComponent } from './components/departure-board/departure-board.component';
 import { StopsService } from './services/stops.service';
 import { RawStop } from './services/resrobot.service';
+import { StopGroup } from './models/stop.model';
 import { VasttrafikColorsService } from './services/vasttrafik-colors.service';
 
 @Component({
@@ -94,6 +95,16 @@ export class App implements OnInit {
 
   protected selectAndClose(stop: RawStop): void {
     this.stops.selectStop(stop);
+    this.showSearch.set(false);
+    this.stops.searchResults.set([]);
+    this.searchQuery = '';
+  }
+
+  protected selectFavoriteAndClose(fav: StopGroup): void {
+    this.stops.stopGroups.set([fav]);
+    this.stops.currentGroupIndex.set(0);
+    this.stops.currentPlatformIndex.set(0);
+    this.stops.loadDeparturesIfNeeded();
     this.showSearch.set(false);
     this.stops.searchResults.set([]);
     this.searchQuery = '';

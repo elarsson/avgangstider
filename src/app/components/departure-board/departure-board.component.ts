@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import type { DepartureRow } from '../../models/stop.model';
 import { LineBadgeComponent } from '../line-badge/line-badge.component';
 import { TransportModeIconComponent } from '../transport-mode-icon/transport-mode-icon.component';
@@ -16,6 +16,8 @@ export class DepartureBoardComponent {
   stopName = input('');
   platformLabel = input('');
   currentTime = input(new Date());
+  isFavorite = input(false);
+  favoriteToggle = output<void>();
 
   protected formatTime(minutes: number, time: string): string {
     if (minutes <= 0) return 'Nu';
@@ -25,6 +27,11 @@ export class DepartureBoardComponent {
 
   protected showUnit(minutes: number): boolean {
     return minutes > 0 && minutes < 60;
+  }
+
+  protected formatDelay(delay: number | null): string | null {
+    if (delay === null || delay === 0) return null;
+    return delay > 0 ? `+${delay}` : String(delay);
   }
 
   protected formattedClock(): string {

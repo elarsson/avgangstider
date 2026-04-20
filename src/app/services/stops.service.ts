@@ -17,6 +17,9 @@ interface PlatformCache {
   loadedAt: number;
 }
 
+const FAVORITES_KEY = 'avgangstider:favorites';
+const LAST_GROUP_KEY = 'avgangstider:lastGroup';
+
 @Injectable({ providedIn: 'root' })
 export class StopsService {
   private geo = inject(GeolocationService);
@@ -33,10 +36,10 @@ export class StopsService {
   readonly currentTime = signal(new Date());
   readonly searchResults = signal<RawStop[]>([]);
   readonly searching = signal(false);
+  readonly favorites = signal<StopGroup[]>(loadStoredFavorites());
 
   private platformCache = new Map<string, PlatformCache>();
   private cacheVersion = signal(0);
-  private refreshTimer: ReturnType<typeof setInterval> | null = null;
 
   readonly currentGroup = computed(
     () => this.stopGroups()[this.currentGroupIndex()] ?? null,
@@ -66,8 +69,35 @@ export class StopsService {
     return buildDepartureRows(deps, now);
   });
 
+  isFavorite(group: StopGroup): boolean {
+    return this.favorites().some(f => f.name === group.name);
+  }
+
+  toggleFavorite(group: StopGroup): void {
+    const favs = this.favorites();
+    const updated = this.isFavorite(group)
+      ? favs.filter(f => f.name !== group.name)
+      : [...favs, { name: group.name, extIds: group.extIds, dist: 0 }];
+    this.favorites.set(updated);
+    try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated)); } catch { /* ignore */ }
+  }
+
   init(): void {
-    this.loadingStops.set(true);
+    // 1-second clock tick for live countdown; 30-second data refresh
+    setInterval(() => this.currentTime.set(new Date()), 1000);
+    setInterval(() => this.refreshCurrentDepartures(), 30000);
+
+    // Fast path: restore last viewed stop immediately, skip loading spinner
+    const lastGroup = loadLastGroup();
+    if (lastGroup) {
+      this.stopGroups.set([lastGroup]);
+      this.loadingStops.set(false);
+      this.loadDeparturesIfNeeded();
+    } else {
+      this.loadingStops.set(true);
+    }
+
+    // Background geolocation to update the stop list
     this.geo.getPosition().subscribe({
       next: pos => {
         this.debugCoords.set(`${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} ±${Math.round(pos.coords.accuracy)}m`);
@@ -75,14 +105,9 @@ export class StopsService {
       },
       error: (err: unknown) => {
         this.loadingStops.set(false);
-        this.error.set(geolocationErrorMessage(err));
+        if (!lastGroup) this.error.set(geolocationErrorMessage(err));
       },
     });
-
-    this.refreshTimer = setInterval(() => {
-      this.currentTime.set(new Date());
-      this.refreshCurrentDepartures();
-    }, 30000);
   }
 
   navigateGroup(delta: number): void {
@@ -157,8 +182,11 @@ export class StopsService {
       next: stops => {
         this.debugCoords.update(c => c ? `${c} — ${stops.length} hållplatser` : c);
         const groups = groupStops(stops).slice(0, 5);
+        const prevName = this.currentGroup()?.name;
         this.stopGroups.set(groups);
-        this.currentGroupIndex.set(0);
+        // Try to keep the previously shown stop selected
+        const idx = groups.findIndex(g => g.name === prevName);
+        this.currentGroupIndex.set(idx >= 0 ? idx : 0);
         this.currentPlatformIndex.set(0);
         this.loadingStops.set(false);
         this.loadDeparturesIfNeeded();
@@ -198,14 +226,38 @@ export class StopsService {
           this.currentPlatformIndex.set(Math.max(0, count - 1));
         }
         this.cacheVersion.update(v => v + 1);
-        this.currentTime.set(new Date());
         this.loadingDepartures.set(false);
+        saveLastGroup(group);
       },
       error: () => {
         this.loadingDepartures.set(false);
       },
     });
   }
+}
+
+function loadStoredFavorites(): StopGroup[] {
+  try {
+    const raw = localStorage.getItem(FAVORITES_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function loadLastGroup(): StopGroup | null {
+  try {
+    const raw = localStorage.getItem(LAST_GROUP_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveLastGroup(group: StopGroup): void {
+  try {
+    localStorage.setItem(LAST_GROUP_KEY, JSON.stringify({ name: group.name, extIds: group.extIds, dist: 0 }));
+  } catch { /* ignore */ }
 }
 
 function groupStops(stops: RawStop[]): StopGroup[] {
@@ -288,7 +340,7 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
       mode: string;
       destination: string;
       via: string | null;
-      times: Array<{ minutes: number; time: string }>;
+      times: Array<{ minutes: number; time: string; delay: number | null }>;
     }
   >();
 
@@ -300,7 +352,7 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
     if (!groups.has(key)) {
       groups.set(key, { line: dep.line, operator: dep.operator, mode: dep.mode, destination, via, times: [] });
     }
-    groups.get(key)!.times.push({ minutes, time: formatHHMM(dep.effectiveTime) });
+    groups.get(key)!.times.push({ minutes, time: formatHHMM(dep.effectiveTime), delay: dep.delayMinutes });
   }
 
   const rows: DepartureRow[] = [];
@@ -315,8 +367,10 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
       via: g.via,
       nextMinutes: first?.minutes ?? 0,
       nextTime: first?.time ?? '',
+      nextDelay: first?.delay ?? null,
       afterMinutes: second?.minutes ?? null,
       afterTime: second?.time ?? null,
+      afterDelay: second?.delay ?? null,
     });
   }
 
