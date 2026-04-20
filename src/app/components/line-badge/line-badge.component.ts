@@ -19,7 +19,7 @@ import {
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: 0.02em;
-      background: var(--line-default-bg, #555);
+      background: var(--line-default-bg, #7b3f9e);
       color: var(--line-default-fg, #fff);
       white-space: nowrap;
     }
