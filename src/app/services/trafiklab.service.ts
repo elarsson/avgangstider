@@ -11,10 +11,12 @@ interface TimetableEntry {
   realtime?: string;
   is_realtime?: boolean;
   canceled?: boolean;
-  route?: { designation?: string; direction?: string };
-  trip?: { trip_id?: string };
+  route?: { designation?: string; direction?: string; agency?: { name?: string; id?: string } };
+  trip?: { trip_id?: string; operator?: { name?: string; id?: string } };
   realtime_platform?: { designation?: string };
   scheduled_platform?: { designation?: string };
+  agency?: { name?: string; id?: string };
+  operator?: { name?: string; id?: string };
 }
 
 interface DeparturesResponse {
@@ -42,6 +44,12 @@ function mapEntry(d: TimetableEntry): Departure {
   const scheduled = new Date(d.scheduled);
   const realtime = d.realtime ? new Date(d.realtime) : null;
   const effectiveTime = d.is_realtime && realtime ? realtime : scheduled;
+  const operator =
+    d.operator?.name ??
+    d.agency?.name ??
+    d.route?.agency?.name ??
+    d.trip?.operator?.name ??
+    '';
   return {
     tripId: d.trip?.trip_id ?? `${d.scheduled}|${d.route?.designation ?? ''}`,
     line: d.route?.designation ?? '',
@@ -49,5 +57,6 @@ function mapEntry(d: TimetableEntry): Departure {
     effectiveTime,
     platform,
     canceled: d.canceled ?? false,
+    operator,
   };
 }

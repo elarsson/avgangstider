@@ -16,10 +16,12 @@ export interface Departure {
   effectiveTime: Date; // realtime ?? scheduled
   platform: string;
   canceled: boolean;
+  operator: string;
 }
 
 export interface DepartureRow {
   line: string;
+  operator: string;
   destination: string;
   via: string | null;
   nextMinutes: number;

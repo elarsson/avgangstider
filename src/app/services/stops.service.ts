@@ -284,6 +284,7 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
     string,
     {
       line: string;
+      operator: string;
       destination: string;
       via: string | null;
       times: Array<{ minutes: number; time: string }>;
@@ -296,7 +297,7 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
     const { destination, via } = parseDirection(dep.direction);
     const key = `${dep.line}|${dep.direction}`;
     if (!groups.has(key)) {
-      groups.set(key, { line: dep.line, destination, via, times: [] });
+      groups.set(key, { line: dep.line, operator: dep.operator, destination, via, times: [] });
     }
     groups.get(key)!.times.push({ minutes, time: formatHHMM(dep.effectiveTime) });
   }
@@ -307,6 +308,7 @@ function buildDepartureRows(deps: Departure[], now: Date): DepartureRow[] {
     const [first, second] = g.times;
     rows.push({
       line: g.line,
+      operator: g.operator,
       destination: g.destination,
       via: g.via,
       nextMinutes: first?.minutes ?? 0,

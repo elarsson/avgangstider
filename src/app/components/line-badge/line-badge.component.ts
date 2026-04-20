@@ -7,7 +7,7 @@ import {
 @Component({
   selector: 'app-line-badge',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<span class="badge" [attr.data-line]="line()">{{ line() }}</span>`,
+  template: `<span class="badge" [attr.data-line]="line()" [attr.data-operator]="operator()" [title]="operator()">{{ line() }}</span>`,
   styles: `
     .badge {
       display: inline-flex;
@@ -27,4 +27,5 @@ import {
 })
 export class LineBadgeComponent {
   line = input.required<string>();
+  operator = input('');
 }
