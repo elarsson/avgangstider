@@ -4,11 +4,13 @@ import {
   OnInit,
   inject,
   isDevMode,
+  signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SwUpdate } from '@angular/service-worker';
 import { DepartureBoardComponent } from './components/departure-board/departure-board.component';
 import { StopsService } from './services/stops.service';
+import { RawStop } from './services/resrobot.service';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +27,7 @@ import { StopsService } from './services/stops.service';
 export class App implements OnInit {
   protected stops = inject(StopsService);
   protected searchQuery = '';
+  protected showSearch = signal(false);
   private swUpdate = inject(SwUpdate);
 
   private touchStartX = 0;
@@ -70,8 +73,26 @@ export class App implements OnInit {
     this.touchActive = false;
   }
 
+  protected openSearch(): void {
+    this.searchQuery = '';
+    this.stops.searchResults.set([]);
+    this.showSearch.set(true);
+  }
+
+  protected closeSearch(): void {
+    this.showSearch.set(false);
+    this.stops.searchResults.set([]);
+  }
+
   protected submitSearch(): void {
     const q = this.searchQuery.trim();
     if (q) this.stops.search(q);
+  }
+
+  protected selectAndClose(stop: RawStop): void {
+    this.stops.selectStop(stop);
+    this.showSearch.set(false);
+    this.stops.searchResults.set([]);
+    this.searchQuery = '';
   }
 }

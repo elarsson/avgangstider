@@ -1,4 +1,49 @@
 <div class="app-shell">
+  <!-- Search button (always visible) -->
+  @if (!showSearch()) {
+    <button type="button" class="search-fab" (click)="openSearch()" aria-label="Sök hållplats">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+  }
+
+  <!-- Search overlay -->
+  @if (showSearch()) {
+    <div class="search-overlay" role="dialog" aria-label="Sök hållplats">
+      <div class="search-overlay-header">
+        <form class="search-overlay-form" (ngSubmit)="submitSearch()" aria-label="Sök hållplats">
+          <input
+            id="overlay-search"
+            type="search"
+            class="search-overlay-input"
+            placeholder="Sök hållplats…"
+            autocomplete="off"
+            [(ngModel)]="searchQuery"
+            name="overlaySearch"
+            autofocus />
+          <button type="submit" class="search-overlay-btn" [disabled]="stops.searching()">Sök</button>
+        </form>
+        <button type="button" class="search-overlay-close" (click)="closeSearch()" aria-label="Stäng">✕</button>
+      </div>
+      @if (stops.searching()) {
+        <p class="search-hint overlay-hint">Söker…</p>
+      }
+      @if (stops.searchResults().length > 0) {
+        <ul class="search-results overlay-results" role="listbox" aria-label="Sökresultat">
+          @for (result of stops.searchResults(); track result.extId) {
+            <li role="option">
+              <button type="button" class="search-result-btn" (click)="selectAndClose(result)">
+                {{ result.name }}
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+
   <!-- Vertical stop-group navigation dots (right edge) -->
   @if (stops.stopGroups().length > 1) {
     <nav class="group-nav" aria-label="Hållplatser">
